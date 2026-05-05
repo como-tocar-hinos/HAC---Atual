@@ -1,0 +1,33 @@
+{
+  "name": "copy-of-1-hinário-adventista-cifrado-atual",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx server.ts",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "tsc --noEmit",
+    "start": "node server.ts"
+  },
+  "dependencies": {
+    "@google/genai": "^1.41.0",
+    "@supabase/supabase-js": "2.45.1",
+    "@types/express": "^5.0.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "lucide-react": "^1.8.0",
+    "motion": "^12.38.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "react-player": "^3.4.0",
+    "stripe": "^22.0.1",
+    "tsx": "^4.21.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0"
+  }
+}

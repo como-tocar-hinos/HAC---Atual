@@ -1,0 +1,8 @@
+{
+  "name": "HA Cifrado ATUAL",
+  "description": "App oficial de letras cifradas do Hinário Adventista para estudo musical e acompanhamento em cultos.",
+  "requestFramePermissions": [
+    "picture-in-picture",
+    "fullscreen"
+  ]
+}
