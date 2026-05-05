@@ -421,7 +421,7 @@ const App: React.FC = () => {
               </svg>
             </button>
             <button onClick={() => setIsDarkMode(!isDarkMode)} className="p-2.5 rounded-xl border dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">{isDarkMode ? '☀️' : '🌙'}</button>
-            <span className="text-[9px] text-gray-400 font-mono opacity-40 ml-1">v1.2.5</span>
+            <span className="text-[9px] text-gray-400 font-mono opacity-40 ml-1">v1.2.6</span>
           </div>
         </div>
       </header>
