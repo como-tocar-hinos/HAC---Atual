@@ -92,7 +92,8 @@ const App: React.FC = () => {
     return saved === 'dark';
   });
 
-  useEffect(() => {
+    useEffect(() => {
+    console.log("--- APP BOOT v1.2.9 [" + new Date().toISOString() + "] ---");
     supabase.auth.getSession().then(({ data: { session } }) => {
       const currentUser = session?.user ?? null;
       setUser(currentUser);
@@ -421,7 +422,7 @@ const App: React.FC = () => {
               </svg>
             </button>
             <button onClick={() => setIsDarkMode(!isDarkMode)} className="p-2.5 rounded-xl border dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">{isDarkMode ? '☀️' : '🌙'}</button>
-            <span className="text-[9px] text-gray-400 font-mono opacity-40 ml-1">v1.2.6</span>
+            <span className="text-[10px] font-mono text-blue-500 dark:text-blue-400 font-black ml-1 px-1 bg-blue-50 dark:bg-blue-900/20 rounded">v1.2.9</span>
           </div>
         </div>
       </header>
