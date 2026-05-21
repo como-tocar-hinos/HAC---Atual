@@ -138,37 +138,50 @@ const VideoTutorials: React.FC<VideoTutorialsProps> = ({ isDarkMode }) => {
   };
 
   const Sidebar = () => (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-6">
       {levels.map((group, gIdx) => (
-        <div key={group.id} className="mb-2">
+        <div key={group.id} className="mb-4">
           {/* HIERARQUIA 1: NÍVEIS */}
-          <div className={`${group.bgColor} ${group.color} px-5 py-3 rounded-2xl shadow-lg mb-6 flex items-center justify-between`}>
-            <h4 className="text-[11px] font-black uppercase tracking-[0.2em]">
+          <div className={`${group.bgColor} ${group.color} px-5 py-3.5 rounded-2xl shadow-md mb-4 flex items-center justify-between`}>
+            <h4 className="text-[11.5px] font-black uppercase tracking-[0.2em] text-white">
               {group.level}
             </h4>
-            <div className="w-2 h-2 rounded-full bg-white/40 animate-pulse" />
+            <div className="w-2.5 h-2.5 rounded-full bg-white/40 animate-pulse" />
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             {group.modules.map(module => (
-              <div key={module.id} className={`rounded-2xl overflow-hidden transition-all duration-300 ${expandedModules.has(module.id) ? 'bg-slate-50 dark:bg-slate-800/30 ring-1 ring-slate-100 dark:ring-slate-800' : ''}`}>
+              <div 
+                key={module.id} 
+                className={`rounded-2xl overflow-hidden border transition-all duration-300 ${
+                  expandedModules.has(module.id) 
+                    ? 'bg-slate-100/90 border-slate-300 dark:bg-slate-800/40 dark:border-slate-800 ring-1 ring-slate-200/50 dark:ring-slate-900/50' 
+                    : 'bg-white border-slate-200 hover:bg-slate-50/80 dark:bg-slate-900 dark:border-slate-800 dark:hover:bg-slate-800/30'
+                }`}
+              >
                 
                 {/* HIERARQUIA 2: MÓDULOS */}
                 <button 
                   onClick={() => toggleModule(module.id)}
-                  className={`w-full p-4 flex items-center justify-between text-left transition-all`}
+                  className={`w-full p-4 flex items-center justify-between text-left transition-all hover:text-red-650`}
                 >
-                  <span className="text-sm font-black text-slate-800 dark:text-slate-100 uppercase tracking-tight">
+                  <span className={`text-sm font-bold uppercase tracking-tight transition-colors ${
+                    expandedModules.has(module.id) 
+                      ? 'text-red-700 dark:text-red-400' 
+                      : 'text-slate-800 dark:text-slate-100'
+                  }`}>
                     {module.name}
                   </span>
-                  <svg className={`w-4 h-4 transition-transform duration-300 text-slate-400 ${expandedModules.has(module.id) ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className={`w-4 h-4 transition-transform duration-300 ${
+                    expandedModules.has(module.id) ? 'rotate-180 text-red-600' : 'text-slate-600 dark:text-slate-400'
+                  }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M19 9l-7 7-7-7"/>
                   </svg>
                 </button>
 
                 {/* HIERARQUIA 3: AULAS */}
                 {expandedModules.has(module.id) && (
-                  <div className={`px-2 pb-3 space-y-1`}>
+                  <div className="px-2 pb-3 space-y-1 bg-white/50 dark:bg-transparent border-t border-slate-200 dark:border-slate-800 pt-2">
                     {module.lessons.map(lesson => (
                       <button
                         key={lesson.id}
@@ -176,17 +189,17 @@ const VideoTutorials: React.FC<VideoTutorialsProps> = ({ isDarkMode }) => {
                           setSelectedLesson(lesson);
                           setIsMobileMenuOpen(false);
                         }}
-                        className={`w-full p-3 rounded-xl text-xs font-medium text-left transition-all flex items-center gap-3 group relative ${
+                        className={`w-full p-3 rounded-xl text-xs font-semibold text-left transition-all flex items-center gap-3 group relative ${
                           selectedLesson?.id === lesson.id 
-                            ? 'text-red-600 bg-red-50 dark:bg-red-950/20' 
-                            : 'text-slate-500 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-800'
+                            ? 'text-red-700 bg-red-50 dark:text-red-400 dark:bg-red-950/25 font-bold' 
+                            : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-800/60 dark:hover:text-white'
                         }`}
                       >
                         {selectedLesson?.id === lesson.id && (
                           <div className="absolute left-0 top-2 bottom-2 w-1 bg-red-600 rounded-full" />
                         )}
                         <div className={`w-5 h-5 rounded-lg flex items-center justify-center text-[8px] transition-colors ${
-                          selectedLesson?.id === lesson.id ? 'bg-red-600 text-white' : 'bg-slate-200 dark:bg-slate-700'
+                          selectedLesson?.id === lesson.id ? 'bg-red-600 text-white' : 'bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-300 font-bold'
                         }`}>
                            {selectedLesson?.id === lesson.id ? '●' : '▶'}
                         </div>
@@ -194,21 +207,21 @@ const VideoTutorials: React.FC<VideoTutorialsProps> = ({ isDarkMode }) => {
                       </button>
                     ))}
                     {module.lessons.length === 0 && (
-                      <div className="p-4 text-center text-[10px] text-slate-400 font-bold uppercase">Em breve</div>
+                      <div className="p-4 text-center text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider">Em breve</div>
                     )}
                   </div>
                 )}
               </div>
             ))}
             {group.modules.length === 0 && (
-               <div className="p-4 text-center text-xs text-slate-400 font-medium">Nenhum módulo cadastrado</div>
+               <div className="p-4 text-center text-xs text-slate-600 dark:text-slate-400 font-semibold bg-slate-50/50 dark:bg-slate-900/40 rounded-2xl border border-dashed border-slate-200 dark:border-slate-800">Nenhum módulo cadastrado</div>
             )}
           </div>
         </div>
       ))}
       {!loading && levels.length === 0 && (
         <div className="text-center py-10">
-          <p className="text-sm font-bold text-slate-400">Nenhum tutorial disponível</p>
+          <p className="text-sm font-bold text-slate-500">Nenhum tutorial disponível</p>
         </div>
       )}
     </div>
