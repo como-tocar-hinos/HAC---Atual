@@ -4,7 +4,7 @@ import { Hymn, Level } from './types';
 export const INITIAL_LEVELS: Level[] = [
   { 
     id: 'level-iniciante', 
-    name: 'Iniciante', 
+    name: 'Nível Zero e Iniciante', 
     description: 'Hinos com acordes básicos e ritmos simples.', 
     color: 'bg-amber-500' 
   },

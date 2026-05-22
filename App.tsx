@@ -285,7 +285,11 @@ const App: React.FC = () => {
         acc[curr.level_id] = (acc[curr.level_id] || 0) + 1;
         return acc;
       }, {});
-      setLevels((levelsData || []).map(l => ({ ...l, hymnCount: counts[l.id] || 0 })));
+      setLevels((levelsData || []).map(l => ({ 
+        ...l, 
+        name: l.name === 'Iniciante' ? 'Nível Zero e Iniciante' : l.name,
+        hymnCount: counts[l.id] || 0 
+      })));
     } catch (e) {
       setErrorMsg("Erro ao carregar categorias.");
     }
